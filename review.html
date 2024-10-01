@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <script src="js/owl.carousel.js"></script>
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <title>KulbirTravels</title>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+        <aside class="lft"><a href="index.html">
+        <img src="images/logo.png"></a>
+        </aside>
+        
+        <aside class="rgt">
+            <a class="Hamburger">
+                <span>
+                    <div class="line top"></div>
+                    <div class="line"></div>
+                    <div class="line bottom"></div>
+                </span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="car.html">Our Vehicle</a></li>
+                    <li><a href="travel.html">Travel Package</a></li>
+                    <li><a href="gallery.html">Our Culture</a></li>
+                    <li><a href="review.html">Testimonials</a></li>
+                    <li><a href="contact.html" class="btn">Contact Us</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="clear"></div>
+        
+        
+        </div>
+        </header>
+        <script type="text/javascript">$(".Hamburger").click(function() {	
+            $(".Hamburger").toggleClass("active");	
+            $("nav").toggleClass("active");	
+            });</script>
+        
+        
+        <section class="inrbnr test" >
+    <div class="wrap">
+        <h1>
+            Testimonial
+        </h1>
+    </div>
+</section>
+
+
+<section class="test inr">
+<div class="wrap">
+    <h2> Add Review</h2>
+    <div class="container">
+        <!-- Review Submission Form -->
+        <form id="reviewForm">
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating">
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Star</option>
+            </select>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="review">Your Review:</label>
+            <textarea id="review" name="review" required></textarea>
+            
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+
+    <h2>Client Reviews</h2>
+    <div id="reviewList" class="review-container"></div>
+</div>
+
+<!-- Delete Prompt Modal -->
+<div id="deletePrompt" style="display:none;">
+    <p>Enter your password to delete this review:</p>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="confirmDelete()">Submit</button>
+    <button onclick="cancelDelete()">Cancel</button>
+</div>
+</section>
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewList = document.getElementById('reviewList');
+    const deletePrompt = document.getElementById('deletePrompt');
+    let currentReviewId;
+
+    // Load reviews from localStorage and display them in the DOM
+    function loadReviews() {
+        reviewList.innerHTML = ''; // Clear existing reviews in the DOM
+        const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+        // Sort reviews by ID (assuming IDs are generated based on timestamp)
+        savedReviews.sort((a, b) => b.id.localeCompare(a.id));
+
+        // Display all reviews
+        savedReviews.forEach(review => {
+            displayReview(review.id, review.name, review.rating, review.text);
+        });
+    }
+
+    // Save a new review to localStorage
+    function saveReview(id, name, rating, text) {
+        const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        savedReviews.push({ id, name, rating, text });
+
+        // Save all reviews
+        localStorage.setItem('reviews', JSON.stringify(savedReviews));
+    }
+
+    // Remove a review from localStorage
+    function removeReviewFromStorage(id) {
+        const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        const updatedReviews = savedReviews.filter(review => review.id !== id);
+        localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+    }
+
+    // Display a review in the DOM
+    function displayReview(id, name, rating, text) {
+        const reviewElement = document.createElement('div');
+        reviewElement.id = id;
+        reviewElement.classList.add('review');
+        reviewElement.innerHTML = `
+            <p class="rating">${'⭐'.repeat(Number(rating))}</p>
+            <p class="name"><strong>${name}</strong></p>
+            <p class="review-text">${text}</p>
+            <button class="delete-button" onclick="showDeletePrompt('${id}')">Delete</button>
+        `;
+        reviewList.appendChild(reviewElement);
+    }
+
+    // Handle form submission to add a new review
+    reviewForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const rating = document.getElementById('rating').value;
+        const name = document.getElementById('name').value;
+        const reviewText = document.getElementById('review').value;
+
+        const reviewId = 'review' + Date.now();
+        displayReview(reviewId, name, rating, reviewText);
+        saveReview(reviewId, name, rating, reviewText);
+
+        reviewForm.reset();
+    });
+
+    // Show delete prompt modal
+    window.showDeletePrompt = (reviewId) => {
+        currentReviewId = reviewId;
+        deletePrompt.style.display = 'block';
+    };
+
+    // Confirm deletion of a review
+    window.confirmDelete = () => {
+        const password = document.getElementById('passwordInput').value;
+
+        // Replace with actual password verification
+        if (password === 'correct-password') {
+            const reviewElement = document.getElementById(currentReviewId);
+            if (reviewElement) {
+                reviewElement.remove(); // Remove review from DOM
+                removeReviewFromStorage(currentReviewId); // Remove review from localStorage
+                deletePrompt.style.display = 'none';
+            } else {
+                alert('Review not found.');
+            }
+        } else {
+            alert('Incorrect password.');
+        }
+    };
+
+    // Cancel deletion and hide prompt
+    window.cancelDelete = () => {
+        deletePrompt.style.display = 'none';
+    };
+
+    // Load reviews when the page loads
+    loadReviews();
+
+    // Handle query parameters to add reviews directly
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            rating: params.get('rating'),
+            name: params.get('name'),
+            review: params.get('review')
+        };
+    }
+
+    const queryParams = getQueryParams();
+
+    if (queryParams.rating && queryParams.name && queryParams.review) {
+        const reviewId = 'review' + Date.now();
+        displayReview(reviewId, queryParams.name, queryParams.rating, queryParams.review);
+        saveReview(reviewId, queryParams.name, queryParams.rating, queryParams.review);
+    }
+});
+
+</script>
+
+
+
+
+
+</div>
+</section>
+
+
+<!-- remove any review put name in this -->
+<!-- <script>
+    // Function to remove reviews by a specific name
+function removeReviewsByName(nameToRemove) {
+    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    
+    // Filter out reviews with the specified name
+    const updatedReviews = savedReviews.filter(review => review.name !== nameToRemove);
+    
+    // Update localStorage with the filtered reviews
+    localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+    
+    // Reload the reviews on the page to reflect changes
+    loadReviews();
+}
+
+// Example usage: remove all reviews by "Imran Khan"
+removeReviewsByName("Neha Gupta");
+
+</script> -->
+
+ 
+
+
+
+
+<footer>
+    <div class="wrap">
+<div class="frst">
+    <img src="images/logo.png">
+    <p>With over 25 years in the travel industry, our agency is renowned for excellence and reliability. We ensure a comfortable journey with our fleet of meticulously clean and well-maintained vehicles.</p>
+</div>
+<div class="frst sc">
+    <h2>Quick Links</h2>
+    <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="car.html">Our Vechicle</a></li>
+    <li><a href="travel.html">Travel Package</a></li>
+    <li><a href="gallery.html">Our Culture</a></li>
+    <li><a href="review.html">Testimonial</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+</div>
+
+<div class="frst mrgo">
+    <h2>Contact Us</h2>
+    <ul>
+    <li style="background: url(images/location.png)no-repeat left;background-position:0px 0px;height:46px;"><a href="#">Gol Market New Delhi, Delhi 110001, India</a></li>
+    <li style="background: url(images/phone.png)no-repeat left;background-position:0px 0px;height:46px;"><a href="tel:+919810315052">+91 9810 31 5052</a></li>
+    <li style="background: url(images/mail-foot.png)no-repeat left;background-position:0px 0px;height:46px;"><a href="mailto:kulbirthakur86@gmail.com">kulbirthakur86@gmail.com</a></li>
+   
+    </ul>
+</div>
+<div class="clear"></div>
+
+</div>
+</footer>
+
+
+<div class="lst">
+<div class="wrap">
+    <p>© 2024 Kulbir Travels. All Rights Reserved.</p>
+
+</div>
+</div>
+
+
+<a href="https://wa.me/9810315052?text=I'm%20interested%20in%20your%20services" class="whatsapp-float" target="_blank">
+    <img src="images/whatshapp.png" alt="WhatsApp" class="whatsapp-icon">
+</a>
+<script>
+    window.addEventListener('scroll', function() {
+    var whatsappButton = document.querySelector('.whatsapp-float');
+    if (window.scrollY > 100) {
+        whatsappButton.style.opacity = 1;
+    } else {
+        whatsappButton.style.opacity = 0;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.whatsapp-float').style.opacity = 0;
+});
+
+</script>

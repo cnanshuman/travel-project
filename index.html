@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+        
+        <script src="js/owl.carousel.js"></script>
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <title>KulbirTravels</title>
+</head>
+
+<body>
+<header>
+<div class="wrap">
+<aside class="lft"><a href="index.html">
+<img src="images/logo.png"></a>
+</aside>
+
+<aside class="rgt">
+    <a class="Hamburger">
+        <span>
+            <div class="line top"></div>
+            <div class="line"></div>
+            <div class="line bottom"></div>
+        </span>
+    </a>
+    <nav class="nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="car.html">Our Vehicle</a></li>
+            <li><a href="travel.html">Travel Package</a></li>
+            <li><a href="gallery.html">Our Culture</a></li>
+            <li><a href="review.html">Testimonials</a></li>
+            <li><a href="contact.html" class="btn">Contact Us</a></li>
+        </ul>
+    </nav>
+</aside>
+<div class="clear"></div>
+
+
+</div>
+</header>
+<script type="text/javascript">$(".Hamburger").click(function() {	
+    $(".Hamburger").toggleClass("active");	
+    $("nav").toggleClass("active");	
+    });</script>	
+<section class="bnr">
+    <ul class="icn">
+        <li><a href="tel:+919810315052" target="_blank"><img src="images/fac.png"></a></li>
+        
+        <li>
+            <a href="https://wa.me/9810315052" target="_blank">
+                <img src="images/in.png" alt="Contact on WhatsApp">
+            </a>
+        </li>
+        <li><a href="mailto:kulbirthakur86@gmail.com" target="_blank"><img src="images/mail.png"></a></li>
+        </ul>
+    <div class="banner">
+        <video autoplay muted loop playsinline>
+          <source src="images/india.mp4" type="video/mp4">
+          <img src="images/bnr-v2.jpg" alt="Fallback Image">
+        </video>
+        <div class="banner-text">
+            <h1>Discover North India Culture<br> and Majesty with Kulbir Travels.</h1>
+            <p>Explore North India’s breathtaking landscapes and rich heritage. From the iconic Taj Mahal to the serene Himalayas, experience a journey full of history, culture, and natural beauty. Discover the essence of India in every destination.</p>
+        <a href="contact.html" class="btn">Enquire Now</a>
+        </div>
+    </div>
+</section>  
+
+<section class="abt" id="about-section">
+<div class="wrap">
+<aside class="lft"><h2>About Our Company</h2></aside>
+<aside class="rgt">
+    <a href="about.html" >More about me</a>
+</aside><div class="clear"></div>
+
+<h3>With over <span id="years">0</span> years in the travel industry, our agency is renowned for excellence and reliability. We ensure a comfortable journey with our fleet of meticulously clean and well-maintained vehicles.</h3>
+<p>Kulbir Traveller is committed to delivering outstanding travel experiences through a combination of top-notch service and high-quality vehicles. We ensure every trip is comfortable and secure with our meticulously maintained fleet and experienced drivers. Whether you need transportation for local errands or long-distance journeys, our focus on safety, reliability, and customer satisfaction guarantees a seamless and enjoyable journey. At Kulbir Traveller, we take pride in our ability to provide personalized service tailored to meet the unique needs of each passenger, ensuring that every journey is a pleasant one.</p>
+<p>We offer comfortable 4-seater and 7-seater car services from Delhi to a variety of exciting destinations, including<span> Agra, Jaipur, Udaipur, Jaisalmer, Ranthambore, Shimla, Manali, Mussoorie, Nainital, and more.</span> Whether you’re exploring historic landmarks, enjoying picturesque landscapes, or visiting India’s revered holy sites, we ensure a smooth and pleasant journey tailored to your travel needs.</p>
+
+</div>
+</section>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const yearsElement = document.getElementById('years');
+    const aboutSection = document.getElementById('about-section');
+    const end = 25;
+    const duration = 2000; // Duration for the animation in milliseconds
+    let animationStarted = false;
+
+    function animateNumber() {
+      let start = 0;
+      const stepTime = Math.abs(Math.floor(duration / end));
+      const timer = setInterval(() => {
+        start += 1;
+        yearsElement.textContent = start;
+        if (start >= end) {
+          clearInterval(timer);
+        }
+      }, stepTime);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animationStarted) {
+          animationStarted = true;
+          animateNumber();
+        }
+      });
+    }, { threshold: 0.5 }); // Adjust the threshold as needed
+
+    observer.observe(aboutSection);
+  });
+</script>
+
+
+<section class="car">
+<div class="wrap">
+    <h2>Our Car Offerings</h2>
+    <span>Comfort and Style in Every Ride</span>
+
+    <ul class="owl-carousel2">
+        <li  class="item">
+            <a href="contact.html">
+              <img src="images/innova--crsta.png" alt="Toyota Innova Crysta">
+              <div class="txt">
+                <h3>Toyota Innova Crysta</h3>
+                <div class="line"></div>
+                <h4><span> Seating : </span>6 + 1 Driver</h4>
+                <h4><span> Made By : </span>Toyota</h4>
+                
+                <h4><span> Extra Charges : </span> Tolls, Parking and State Permits as Per Actuals</h4>
+            <h6 class="under">Read More</h6>
+              </div>
+            </a>
+          </li>
+
+          <li class="item">
+            <a href="contact.html">
+              <img src="images/innova.png" alt="Toyota Innova Crysta">
+              <div class="txt">
+                <h3>Toyota Innova</h3>
+                <div class="line"></div>
+                <h4><span> Seating : </span>6 + 1 Driver</h4>
+                <h4><span> Made By : </span>Toyota</h4>
+               
+                <h4><span> Extra Charges : </span> Tolls, Parking and State Permits as Per Actuals</h4>
+            <h6 class="under">Read More</h6>
+              </div>
+            </a>
+          </li>
+
+          <li class="item">
+            <a href="contact.html">
+                
+   <img src="images/swift-szire.png" alt="Toyota Innova Crysta">
+           
+              <div class="txt">
+                <h3>Maruti Swift Dzire</h3>
+                <div class="line"></div>
+                <h4><span> Seating : </span>4 + 1 Driver</h4>
+                <h4><span> Made By : </span>Maruti</h4>
+               
+                <h4><span> Extra Charges : </span> Tolls, Parking and State Permits as Per Actuals</h4>
+            <h6 class="under">Read More</h6>
+              </div>
+            </a>
+          </li>
+       
+          <li class="item">
+            <a href="contact.html">
+                
+   <img src="images/tempo.jpg" alt="Toyota Innova Crysta">
+           
+              <div class="txt">
+                <h3>Force Urbania</h3>
+                <div class="line"></div>
+                <h4><span> Seating : </span>15 + 1 Driver</h4>
+                <h4><span> Made By : </span>Force Urbania</h4>
+               
+            <h4><span> Extra Charges : </span> Tolls, Parking and State Permits as Per Actuals</h4>
+            <h6 class="under">Read More</h6>
+              </div>
+            </a>
+          </li>
+
+          <li class="item">
+            <a href="contact.html">
+                
+   <img src="images/volvo.jpg" alt="Toyota Innova Crysta">
+           
+              <div class="txt">
+                <h3>Volvo Bus</h3>
+                <div class="line"></div>
+                <h4><span> Seating : </span>30 + 1 Driver</h4>
+                <h4><span> Made By : </span>Volvo</h4>
+               
+            <h4><span> Extra Charges : </span> Tolls, Parking and State Permits as Per Actuals</h4>
+            <h6 class="under">Read More</h6>
+              </div>
+            </a>
+          </li>
+
+    </ul>
+   
+</div>
+</section>
+
+<section class="choos">
+<div class="wrap">
+<h2>Why Book Us</h2>
+<span>Your Trusted Travel Partner</span>
+<ul>
+<li><img src="images/reliable.png"><h4>Reliable Service</h4><p>Count on us for punctuality and professionalism on every trip</p></li>
+<li><img src="images/comfortabel.png"><h4>Comfortable Rides</h4><p>Enjoy a smooth and comfortable journey in our well-maintained vehicles</p></li>
+<li><img src="images/driver.png"><h4>Experienced Drivers</h4><p>Our drivers are seasoned professionals with extensive knowledge of routes and safety protocols</p></li>
+<li><img src="images/pricing.png"><h4>Transparent Pricing</h4><p>Clear and competitive pricing with no hidden fees, ensuring great value for your money</p></li>
+</ul>
+
+</div>
+</section>
+
+<section class="car rent">
+    <div class="wrap">
+        <h2>Explore North India</h2>
+        <span>Explore North India Embrace the Majesty</span>
+    
+        <ul >
+            <li>
+                <div class="video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/banaras.mp4" type="video/mp4">
+                        
+                    </video>
+                </div>
+                <h2>Banaras</h2>
+            </li>
+           
+            <li>
+                <div class="video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/jodhpur.mp4" type="video/mp4">
+                        
+                    </video>
+                </div>
+                <h2>Jodhpur</h2>
+            </li>
+
+            <li >
+                <div class="video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/tajmahal.webm" type="video/mp4">
+                        
+                    </video>
+                </div>
+                <h2>Taj Mahal</h2>
+            </li>
+
+            <li>
+                <div class="video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/haridwar.mp4" type="video/mp4">
+                        
+                    </video>
+                </div>
+                <h2>Haridwar</h2>
+            </li>
+
+            <li>
+                <div class="video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/kedar.mp4" type="video/mp4">
+                        
+                    </video>
+                </div>
+                <h2>Kedarnath</h2>
+            </li>
+
+           
+        </ul>   
+        <div class="center" ><a href="travel.html" class="btn">View More</a></div>     
+    </div>
+    </section>
+    <section class="test">
+        <div class="wrap">
+            <h2>Testimonials</h2>
+            <span>What Our Clients Say</span>
+
+    <div class="mrg">        	
+<ul class="owl-carousels" >
+    <li  class="item"><img src="images/tst-star.png">
+        <h3>Rohan Sharma</h3>
+    <p>Kulbir Travels made my trip to Jaipur so smooth and enjoyable. The car was spotless, and the driver was very professional and friendly. Highly recommended!</p>
+    </li>
+    <li  class="item"><img src="images/tst-star.png">
+        <h3>Priya Mehta</h3>
+    <p>I had a great experience with Kulbir Travels. The driver was punctual, and the car was in excellent condition. I felt safe and comfortable throughout the journey.</p>
+    </li>
+    <li  class="item"><img src="images/tst-star.png">
+        <h3>Ankit Verma</h3>
+    <p>Good service overall. The driver was courteous, and the car was clean. Just wish the journey was a bit smoother. But I’d still recommend Kulbir Travels.</p>
+    </li>
+</ul></div>
+
+<div class="center" ><a href="review.html" class="btn">Add Review</a></div>    
+        </div></section>
+
+
+ 
+
+<section class="contact">
+<div class="wrap">
+    <h2>Connect with Us</h2>
+  <span>Let’s Plan Your Perfect Trip</span>
+            <aside class="lft">
+                
+
+                <div class="form">
+                    <h1>Complete the Form Let’s Get Started on Your Travel Plans!</h1>
+                    <form id="enquiryForm">
+                        <div class="flwdrp">
+                            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="flwdrp mrgo">
+                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <div class="flwdrp">
+                            <input type="email" id="email" name="email" placeholder="Email ID" required>
+                        </div>
+                        <div class="flwdrp mrgo">
+                            <input type="number" id="mobile" name="mobile" placeholder="Mobile No" required>
+                        </div>
+                         <div class="flwdrp">
+                            <input type="text" id="pickupLocation" name="pickupLocation" placeholder="Wher You Want To Go" required>
+                        </div>
+                       
+                        <div class="flwdrp mrgo">
+                            <input type="datetime-local" id="pickDateTime" name="pickDateTime" placeholder="Date & Time" required>
+                        </div>
+                        
+                        <div class="flwdrp mrg">
+                            <textarea id="message" name="message" placeholder="Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send An Enquiry</button>
+                    </form>
+                </div>
+                
+            </aside>
+            <aside class="rgt">
+                <img src="images/map.jpg"></aside><div class="clear"></div>
+</div></section>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        emailjs.init('2SlvPsBRtKOfM-Pj5'); // Replace 'YOUR_USER_ID' with your EmailJS user ID
+    
+        const enquiryForm = document.getElementById('enquiryForm');
+    
+        enquiryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+    
+            emailjs.sendForm('service_woz40ba', 'template_co462zr', enquiryForm)
+                .then((response) => {
+                    alert('Enquiry sent successfully!');
+                    enquiryForm.reset();
+                }, (error) => {
+                    console.error('Error:', error);
+                });
+        });
+    });
+    </script>
+    
+<section class="client">
+    <div class="wrap">
+        
+    <h2>Happy Clients</h2>
+    <span>Join Our Family of Satisfied Customers</span> </div>
+    <div class="tp">
+    <ul class="owl-carousel">
+    <li class="item"><img src="images/client-v1.jpg"></li>
+    <li class="item"><img src="images/client-v2.jpg"></li>
+    
+    <li class="item"><img src="images/client-v4.jpg"></li>
+    <li class="item"><img src="images/client-v5.jpg"></li>
+    <li class="item"><img src="images/client-v6.jpg"></li>
+    <li class="item"><img src="images/client-v7.jpg"></li>
+    </ul>
+</div>
+</section>
+
+<footer>
+    <div class="wrap">
+<div class="frst">
+    <img src="images/logo.png">
+    <p>With over 25 years in the travel industry, our agency is renowned for excellence and reliability. We ensure a comfortable journey with our fleet of meticulously clean and well-maintained vehicles.</p>
+</div>
+<div class="frst sc">
+    <h2>Quick Links</h2>
+    <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="car.html">Our Vechicle</a></li>
+    <li><a href="travel.html">Travel Package</a></li>
+    <li><a href="gallery.html">Our Culture</a></li>
+    <li><a href="review.html">Testimonial</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+</div>
+
+<div class="frst mrgo">
+    <h2>Contact Us</h2>
+    <ul>
+    <li style="background: url(images/location.png)no-repeat left;background-position:0px 0px;height:46px;"><a href="#">Gol Market New Delhi, Delhi 110001, India</a></li>
+    <li style="background: url(images/phone.png)no-repeat left;background-position:0px 0px;height:46px;"><a href="tel:+919810315052">+91 9810 31 5052</a></li>
+    <li style="background: url(images/mail-foot.png)no-repeat left;background-position:0px 0px;height:46px;"><a href="mailto:kulbirthakur86@gmail.com">kulbirthakur86@gmail.com</a></li>
+   
+    </ul>
+</div>
+<div class="clear"></div>
+
+</div>
+</footer>
+
+
+<div class="lst">
+<div class="wrap">
+    <p>© 2024 Kulbir Travels. All Rights Reserved.</p>
+
+</div>
+</div>
+
+<a href="https://wa.me/9810315052?text=I'm%20interested%20in%20your%20services" class="whatsapp-float" target="_blank">
+    <img src="images/whatshapp.png" alt="WhatsApp" class="whatsapp-icon">
+</a>
+<script>
+    window.addEventListener('scroll', function() {
+    var whatsappButton = document.querySelector('.whatsapp-float');
+    if (window.scrollY > 100) {
+        whatsappButton.style.opacity = 1;
+    } else {
+        whatsappButton.style.opacity = 0;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.whatsapp-float').style.opacity = 0;
+});
+
+</script>
+</body>
+<script>
+$('.owl-carousel').owlCarousel({
+    margin: 5,
+    loop: true,
+    autoplay: true,
+    nav: false,
+    dots: false,
+    responsive: {
+        0: {
+            items: 2
+        },
+        480: {
+            items: 3
+        },
+        545: {
+            items: 3
+        },
+        600: {
+            items: 6
+        },
+        1000: {
+            items: 6
+        },
+        1200: {
+            items: 6
+        }
+    }
+});
+
+
+
+        $('.owl-carousel2').owlCarousel({
+			margin:20,
+            loop:true,
+			autoplay:true,
+            nav: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+                ,
+                1200: {
+                    items: 3
+                }
+            }
+        });
+
+        $('.owl-carousel3').owlCarousel({
+			margin:20,
+            loop:true,
+			autoplay:true,
+            nav: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+                ,
+                1200: {
+                    items: 6
+                }
+            }
+        });
+
+        $('.owl-carousels').owlCarousel({
+			margin:20,
+            loop:true,
+			autoplay:true,
+            nav: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 2
+                }
+                ,
+                1200: {
+                    items: 2
+                }
+            }
+        });
+</script>
+</html>
